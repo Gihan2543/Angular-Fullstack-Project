@@ -1,0 +1,82 @@
+<section class="vh-100 tm-signup-bg">
+    <div class="container py-5 h-100">
+      <div class="row d-flex align-items-center justify-content-center h-100">
+        <div class="col-md-8 col-lg-7 col-xl-6">
+        </div>
+        
+        <div class="col-md-7 col-lg-5 col-xl-5 offset-xl-1">
+            <div class="alert alert-danger mb-4" *ngIf="error">
+                <h2 class="my-auto">{{error}}</h2>
+            </div>
+            <h1 class="mb-5">Register</h1>
+            <form #register="ngForm" (submit) = "addUser()">
+
+                <div class="form-outline mb-4">
+                    <input #firstname = "ngModel" type="text" [(ngModel)] = "firstName" name="firstName" id="firstName" class="form-control form-control-lg" required/>
+                    <label class="form-label" for="firstName">First Name</label>
+                    <div *ngIf="firstname.touched && firstname.invalid" class="alert alert-danger">
+                        First Name is Required
+                    </div>
+                </div>
+
+                <div class="form-outline mb-4">
+                    <input #lastname = "ngModel" type="text" [(ngModel)] = "lastName" name="lastName" id="lastName" class="form-control form-control-lg" required/>
+                    <label class="form-label" for="lastName">Last Name</label>
+                    <div *ngIf="lastname.touched && lastname.invalid" class="alert alert-danger">
+                        Last Name is Required
+                    </div>
+                </div>
+                
+                <!-- Email input -->
+                <div class="form-outline mb-4">
+                    <input #emailaddress = "ngModel" type="email" email="true" [(ngModel)] = "email" name="email" id="email" class="form-control form-control-lg" required/>
+                    <label class="form-label" for="email">Email address</label>
+                    <div *ngIf="emailaddress.touched && emailaddress.invalid" class="alert alert-danger">
+                        <div *ngIf="emailaddress.errors?.['required']">
+                            Email is Required
+                        </div>
+                        <div *ngIf="emailaddress.errors?.['email']">
+                            Email is Invalid
+                        </div>                        
+                    </div>
+                </div>
+                
+                <!-- Password input -->
+                <div class="form-outline mb-4">
+                    <input #pass = "ngModel" type="password" minlength="7" [(ngModel)] = "password" name="password" id="password" class="form-control form-control-lg" required/>
+                    <label class="form-label" for="password">Password</label>
+                    <div *ngIf="pass.touched && pass.invalid" class="alert alert-danger">
+                        <div *ngIf="pass.errors?.['required']">
+                            Password is Required
+                        </div>
+                        <div *ngIf="pass.errors?.['minlength']">
+                            Password should be more than 7 characters
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-outline mb-4">
+                    <input #repeatpass = "ngModel" type="password" minlength="7" [(ngModel)] = "confirmPassword" name="confirmPassword" id="confirmPassword" class="form-control form-control-lg" required/>
+                    <label class="form-label" for="confirmPassword">Confirm Password</label>
+                    <div *ngIf="repeatpass.touched && repeatpass.invalid" class="alert alert-danger">
+                        <div *ngIf="repeatpass.errors?.['required']">
+                            Password is Required
+                        </div>
+                        <div *ngIf="repeatpass.errors?.['minlength']">
+                            Password should be more than 7 characters
+                        </div>
+                    </div>
+                    <div *ngIf="repeatpass.touched && repeatpass.value != pass.value" class="alert alert-danger">
+                        Password doesn't match
+                    </div>
+                    
+                </div>
+    
+                <!-- Submit button -->
+                <button [disabled] = "!firstName || !lastName || !email || !password || !confirmPassword || password != confirmPassword" type="submit" class="btn btn-primary btn-lg btn-block">Sign Up</button>
+    
+            </form>
+        </div>
+      </div>
+    </div>
+  </section>

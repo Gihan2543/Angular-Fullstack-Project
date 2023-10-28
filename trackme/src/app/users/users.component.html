@@ -1,0 +1,90 @@
+
+<div class="container text-right">
+    <!-- Modal -->
+    <div class="modal fade" id="addTaskModal" tabindex="-1" aria-labelledby="addTaskModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-fullscreen">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5 mt-2" id="addTaskModalLabel">Tasks of {{username}}</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <h2 class="text-light my-5 text-center" *ngIf="error">{{error}}</h2>
+                    <div class="container task-container" *ngIf="tasks.length > 0">
+                        <div class="" *ngFor = "let date of dates">
+                            <h2 class="text-light mt-5">{{ date }}</h2>
+                            <div class="single-row">
+                                <h3 class="col-4 text-light">
+                                    Task Name
+                                </h3>
+                                <h3 class="col-2 ms-2 text-light">
+                                    Start Time
+                                </h3>
+                                <h3 class="col-2 ms-2 text-light">
+                                    End Time
+                                </h3>
+                                <h3 class="col-2 ms-2 text-light">
+                                    Hours
+                                </h3>
+                                <h3 class="col-2 ms-2 text-light">
+                                    Minutes
+                                </h3>
+                            </div>
+                            <div class="single-row my-2" *ngFor = "let task of tasks">
+                                <div class="col-4" *ngIf="task.date == date">
+                                    {{task.task_name}}
+                                </div>
+                                <div class="col-2 ms-2" *ngIf="task.date == date">
+                                    {{task.startTime | date:'h:mm a'}}
+                                </div>
+                                <div class="col-2 ms-2" *ngIf="task.date == date">
+                                    {{task.endTime | date:'h:mm a'}}
+                                </div>
+                                <div class="col-2 ms-2" *ngIf="task.date == date">
+                                    {{task.hours}}
+                                </div>
+                                <div class="col-2 ms-2" *ngIf="task.date == date">
+                                    {{task.minutes}}
+                                </div>
+                            </div>
+                        </div>
+                        
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>    
+</div>
+<div class="container">
+    <div class="single-row mt-5">
+        <h3 class="col-3 text-light">
+            First Name
+        </h3>
+        <h3 class="col-3 text-light">
+            Last Name
+        </h3>
+        <h3 class="col-4 text-light">
+            Email
+        </h3>
+        <h3 class="col-2 text-right text-light">
+            Action
+        </h3>
+    </div>
+    <div class="single-row my-2 align-items-center" *ngFor = "let user of users">
+        <div class="col-3">
+            {{user.firstName}}
+        </div>
+        <div class="col-3">
+            {{user.lastName}}
+        </div>
+        <div class="col-4">
+            {{user.email}}
+        </div>
+        <div class="col-2 text-right">
+            <input class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addTaskModal" type="button" (click) = "showTasks(user._id, user.firstName, user.lastName)" value="Tasks" >
+        </div>
+    </div>
+</div>

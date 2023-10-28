@@ -1,0 +1,48 @@
+<section class="vh-100 tm-signin-bg">
+    <div class="container py-5 h-100">
+      <div class="row d-flex align-items-center justify-content-center h-100">
+        <div class="col-md-8 col-lg-7 col-xl-6">
+        </div>
+        
+        <div class="col-md-7 col-lg-5 col-xl-5 offset-xl-1">
+            <div class="alert alert-danger mb-4" *ngIf="error">
+              <h2 class="my-auto">{{error}}</h2>
+            </div>
+            <h1 class="mb-5">Login</h1>
+            <form #userlogin="ngForm" (submit)="loginUser()">
+                <!-- Email input -->
+                <div class="form-outline mb-4">
+                  <input #emailaddress="ngModel" email="true" type="email" [(ngModel)] = "email" name="email" id="email" class="form-control form-control-lg" required/>
+                  <label class="form-label" for="email">Email address</label>
+                  <div *ngIf="emailaddress.touched && emailaddress.invalid" class="alert alert-danger">
+                    <div *ngIf="emailaddress.errors?.['required']">
+                        Email is Required
+                    </div>
+                    <div *ngIf="emailaddress.errors?.['email']">
+                        Email is Invalid
+                    </div>                        
+                  </div>
+                </div>
+    
+                <!-- Password input -->
+                <div class="form-outline mb-4">
+                <input #pass="ngModel" type="password" minlength="7" [(ngModel)] = "password" name="password" id="password" class="form-control form-control-lg" required/>
+                <label class="form-label" for="password">Password</label>
+                <div *ngIf="pass.touched && pass.invalid" class="alert alert-danger">
+                  <div *ngIf="pass.errors?.['required']">
+                      Password is Required
+                  </div>
+                  <div *ngIf="pass.errors?.['minlength']">
+                      Password should be more than 7 characters
+                  </div>
+                </div>
+                </div>
+    
+                <!-- Submit button -->
+                <button [disabled] = "!email || !password" type="submit" class="btn btn-primary btn-lg btn-block">Sign in</button>
+    
+            </form>
+        </div>
+      </div>
+    </div>
+  </section>

@@ -1,0 +1,29 @@
+:host {
+    min-height: 100vh;
+    display: block;
+    background-color: rgb(1, 1, 25) !important;
+}
+
+.trackme-single-row {
+    display: flex;
+}
+
+.container {
+    width: 90%;
+    max-width: 1440px;
+    margin-top: 0 !important;
+    padding-top: 50px;
+    background-color: rgb(1, 1, 25) !important;
+}
+
+.modal-content {
+    background-color: rgb(1, 1, 25) !important;
+}
+
+.text-right {
+    text-align: right;
+}
+
+.text-left {
+    text-align: left;
+}

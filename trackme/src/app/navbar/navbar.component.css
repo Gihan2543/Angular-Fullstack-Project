@@ -1,0 +1,22 @@
+.navbar {
+    width: 100%;
+    background-color: rgb(3, 3, 52) !important;
+}
+
+.navbar .container-fluid {
+    width: 90%;
+}
+
+.navbar-nav {
+    justify-content: flex-end;
+    width: 100%;
+}
+
+.dropdown-menu {
+    right: 0;
+    background-color: rgb(3, 3, 52) !important;
+}
+
+.dropdown:hover .dropdown-menu {
+    display: block;
+}
